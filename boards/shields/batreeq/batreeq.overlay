@@ -57,7 +57,6 @@
         compatible = "cirque,pinnacle";
         reg = <0>;                                   /* This matches the X in pinnacle@X */
         spi-max-frequency = <8000000>;               /* Maximum speed for spi0-2 is 8MHz on nRF52, may be different on your MCU */
-        sleep;                                       /* Optional */
         dr-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; /* REQUIRED. You can use &pro_micro or &gpio# here. */
         sensitivity = "1x";                          /* No more than 2x if you have the thick curved overlay! */
     };
