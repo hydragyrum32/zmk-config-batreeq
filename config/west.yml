@@ -11,8 +11,8 @@ manifest:
       remote: zmkfirmware
       revision: feat/pointers-move-scroll
       import: app/west.yml
-    - name: zmk-pmw3610-driver
-      remote: bullwinkle3000
-      revision: pmw3360
+    - name: cirque-input-module
+      remote: zmkfirmware
+      revision: main
   self:
     path: config

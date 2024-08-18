@@ -41,39 +41,27 @@
     status = "okay";
 };
 
-
-//FIXME: change this to work with the waveshare display
-/*nice_view_spi: &spi1 {
-    compatible = "nordic,nrf-spim";
-    cs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-};*/
-
-&pro_micro_spi {
-    status = "okay";
-    //compatible = "nordic,nrf-spim";
-    cs-gpios = <&pro_micro 0 GPIO_ACTIVE_LOW>;
-    trackball: trackball@0 {
-        status = "okay";
-        compatible = "pixart,pmw3360";
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-
-        /*   optional features   */ 
-        snipe-layers = <1 4>;
-        scroll-layers = <2 3>;
-        // automouse-layer = <4>;
+/{
+    cirque_input_listener: cirque_input_listener {
+        compatible = "zmk,input-listener";
+        device = <&cirque>;                         /* Must be a phandle for your pinnacle@X node */
+        y-invert;                                   /* Depends upon the Cirque's orientation */
     };
 };
 
-/ {
-  trackball_listener {
-    compatible = "zmk,input-listener";
-    device = <&trackball>;
+&pro_micro_spi {                                    /* You can use &pro_micro_spi or &spi# here */
+    status = "okay";
+    cs-gpios = <&pro_micro 0 GPIO_ACTIVE_LOW>;
 
-  };
+    cirque: pinnacle@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;                                   /* This matches the X in pinnacle@X */
+        spi-max-frequency = <8000000>;               /* Maximum speed for spi0-2 is 8MHz on nRF52, may be different on your MCU */
+        sleep;                                       /* Optional */
+        dr-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; /* REQUIRED. You can use &pro_micro or &gpio# here. */
+        sensitivity = "1x";                          /* No more than 2x if you have the thick curved overlay! */
+    };
 };
-
 / {
     chosen {
         zmk,kscan = &kscan0;
