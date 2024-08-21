@@ -41,13 +41,13 @@
     status = "okay";
 };
 
-/{
-    cirque_input_listener: cirque_input_listener {
-        compatible = "zmk,input-listener";
-        device = <&cirque>;                         /* Must be a phandle for your pinnacle@X node */
-        y-invert;                                   /* Depends upon the Cirque's orientation */
-    };
-};
+///{
+    //cirque_input_listener: cirque_input_listener {
+    //    compatible = "zmk,input-listener";
+    //    device = <&cirque>;                         /* Must be a phandle for your pinnacle@X node */
+    //    y-invert;                                   /* Depends upon the Cirque's orientation */
+    //};
+//};
 /*
 &pro_micro_spi {                                    // You can use &pro_micro_spi or &spi# here 
     status = "okay";
