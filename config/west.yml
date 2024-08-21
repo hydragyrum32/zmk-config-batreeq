@@ -11,8 +11,8 @@ manifest:
       remote: zmkfirmware
       revision: feat/pointers-move-scroll
       import: app/west.yml
-    - name: cirque-input-module
-      remote: zmkfirmware
-      revision: main
+      #- name: cirque-input-module
+      #remote: zmkfirmware
+      #revision: main
   self:
     path: config
